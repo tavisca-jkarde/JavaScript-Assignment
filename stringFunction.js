@@ -1,4 +1,4 @@
-﻿
+
 function stringConcat()
 {
 	
@@ -216,7 +216,7 @@ function stringReplace()
 	this.getCharAt = function(index)
 	{
 
-		//debugger;
+		
 		var indexvalue = parseInt(index);
 
 		var lengthValue = this.getLengthvalue();
@@ -240,9 +240,7 @@ function stringReplace()
 					}
 					
 				}
-
-			
-
+				
 		}else {
 
 			return '';
@@ -347,39 +345,20 @@ function stringReplace()
 		var lenth1 = this.getLengthvalue();
 
 		var	 lenth2 = s1.getLengthvalue();
-
-		//debugger;	
-
-		var count =0;
-
-		for (var i = 0 ; i<lenth1 ;i++)
-		{
-			if(this.val[i]==firstvalue[i])
-			{
-
-				count++;
-			}
-
-		}
-
-		var replaceAt = count;
-
-		//var replaceAt = this.getIndexOf(firstvalue);
+		var replaceAt = this.getIndexOf(firstvalue);
 
 		var finalstring = "";
 
-		
+
 
 		for (var i = 0 ; i < replaceAt ; i++)
 		{
-			finalstring += replacestring[i];
-
-
+			finalstring += this.val[i];
 		}
 
-		//finalstring += replacestring;
+		finalstring += replacestring;
 
-		for(var i = replaceAt; i<lenth1;i++)
+		for(var i = replaceAt+lenth2; i<lenth1;i++)
 			{
 				finalstring += this.val[i];
 			}
