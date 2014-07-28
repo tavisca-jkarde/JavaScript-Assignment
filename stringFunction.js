@@ -337,40 +337,21 @@ function stringReplace()
 
 
 	// Replace Function
-	this.getReplace = function(firstvalue , replacestring)
+	this.getReplace = function(stringFirst, replaceValue)
 	{
 		
-		s1 = new stringExpression(firstvalue);
-
-		var lenth1 = this.getLengthvalue();
-
-		var	 lenth2 = s1.getLengthvalue();
-		var replaceAt = this.getIndexOf(firstvalue);
-
-		var finalstring = "";
-
-
-
-		for (var i = 0 ; i < replaceAt ; i++)
-		{
-			finalstring += this.val[i];
-		}
-
-		finalstring += replacestring;
-
-		for(var i = replaceAt+lenth2; i<lenth1;i++)
-			{
-				finalstring += this.val[i];
-			}
-				
-		return finalstring;
-
-
-
+		var index = this.val.indexOf(stringFirst);
+        var stringReplaced = "";
+        var newString = replaceValue;
+        var indexLast = index + stringFirst.length;;
+        for (var i = 0; i < index; i++)
+            stringReplaced += this.val[i];
+        stringReplaced += replaceValue;
+        for (var j = indexLast; j < this.getLengthvalue() ; j++)
+            stringReplaced += this.val[j];
+        return stringReplaced;
 
 	}
-
-
 
 }
 
