@@ -93,6 +93,34 @@ function stringReplace()
 
 }
 
+	window.onload =function()
+	{
+		var clickEventConcat = document.getElementById("btnStringConcat");
+		clickEventConcat.onclick = stringConcat;
+
+		var clickEventLength = document.getElementById("btnStringLength");
+		clickEventLength.onclick = stringLength;
+
+		var clickEventSubstring = document.getElementById("btnStringSubstring");
+		clickEventSubstring.onclick = stringSubstring;
+
+		var clickEventCharAt = document.getElementById("btnStringCharAt");
+		clickEventCharAt.onclick = stringCharAt;
+
+		var clickEventIndexOf = document.getElementById("btnStringIndexOf");
+		clickEventIndexOf.onclick = stringIndexOf;
+
+		var clickEventLastIndexOf = document.getElementById("btnStringLastIndexOf");
+		clickEventLastIndexOf.onclick = stringLastIndexOf;
+
+		var clickEventReplace = document.getElementById("btnStringReplace");
+		clickEventReplace.onclick = stringReplace;
+
+		
+	}
+	
+
+
 
  function stringExpression(str1)
 { 	
@@ -133,20 +161,45 @@ function stringReplace()
 	this.getSubString = function(startindex, endindex)
 	{
 		
-		var startvalue = parseInt(startindex);
-		var endvalue = parseInt(endindex);
+		
+		var startvalue;
+		var length;
+		
 
-		if (startvalue>endvalue)
+		if(endindex=='')
+		{
+			length = this.getLengthvalue();
+
+		}else {
+
+			length = parseInt(endindex);
+		}
+
+		if(startindex=='')
+		{
+			return undefined;
+
+
+		}else 
+		{
+			startvalue = parseInt(startindex);
+
+		}
+
+
+		if (startvalue>length)
 		{
 			return undefined;
 
 		}
 
+		
+
 		if(this.val!=''|| this.val!=null || this.val !=undefined){
 			
 			var substr = '';
 
-				for(var i=startvalue ; i<endvalue;i++){
+				for(var i=startvalue ; i<length;i++){
 					substr =substr + this.val[i];
 				}
 
@@ -163,18 +216,21 @@ function stringReplace()
 	this.getCharAt = function(index)
 	{
 
-		
+		//debugger;
 		var indexvalue = parseInt(index);
 
+		var lengthValue = this.getLengthvalue();
+
 		if(index==undefined){
-			return undefined;
+			return '';
 		}
 
 		if(this.val!=''|| this.val!=null || this.val !=undefined){
 			
 			var char = '';
 
-				for(var i=0 ; i<this.getLengthvalue() ;i++){
+				for(var i=0 ; i<lengthValue ;i++)
+				{
 
 					if(indexvalue == i)
 					{
@@ -188,9 +244,16 @@ function stringReplace()
 			
 
 		}else {
-			return undefined;
+
+			return '';
 
 		}
+
+		if(char==''){
+
+			return '';
+		}
+
 
 	}
 
@@ -270,6 +333,8 @@ function stringReplace()
 				}
 			}
 
+			return -1;	
+
 	}
 
 
@@ -282,22 +347,39 @@ function stringReplace()
 		var lenth1 = this.getLengthvalue();
 
 		var	 lenth2 = s1.getLengthvalue();
-		var replaceAt = this.getIndexOf(firstvalue);
+
+		//debugger;	
+
+		var count =0;
+
+		for (var i = 0 ; i<lenth1 ;i++)
+		{
+			if(this.val[i]==firstvalue[i])
+			{
+
+				count++;
+			}
+
+		}
+
+		var replaceAt = count;
+
+		//var replaceAt = this.getIndexOf(firstvalue);
 
 		var finalstring = "";
 
-			
+		
 
 		for (var i = 0 ; i < replaceAt ; i++)
 		{
-			finalstring += this.val[i];
+			finalstring += replacestring[i];
 
 
 		}
 
-		finalstring += replacestring;
+		//finalstring += replacestring;
 
-		for(var i = replaceAt+lenth2; i<lenth1;i++)
+		for(var i = replaceAt; i<lenth1;i++)
 			{
 				finalstring += this.val[i];
 			}
